@@ -1,4 +1,4 @@
-module github.com/ivannovak/glide-plugin-node
+module github.com/ivannovak/glide-plugin-php
 
 go 1.24
 
