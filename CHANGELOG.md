@@ -1,3 +1,10 @@
+## 1.0.0 (2025-11-22)
+
+
+### Features
+
+* initial PHP plugin implementation ([b76a967](https://github.com/ivannovak/glide-plugin-php/commit/b76a967e3528959042d35d65a1ed370fadc4b2a5))
+
 ## 1.0.0 (2025-11-21)
 
 
