@@ -1,3 +1,19 @@
+## [2.0.0](https://github.com/ivannovak/glide-plugin-php/compare/v1.0.0...v2.0.0) (2025-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Plugin now uses gRPC instead of library architecture
+
+### Bug Fixes
+
+* **build:** correct module name to glide-plugin-php ([fbdade3](https://github.com/ivannovak/glide-plugin-php/commit/fbdade3d8f894a1cfce636b9380d5418a479b619))
+
+
+### Code Refactoring
+
+* migrate to gRPC architecture and cleanup legacy code ([21b9f58](https://github.com/ivannovak/glide-plugin-php/commit/21b9f584eaf5ba536a1af9a26e558c3c8791c153))
+
 ## 1.0.0 (2025-11-22)
 
 
