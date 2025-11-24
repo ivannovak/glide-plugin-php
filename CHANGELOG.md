@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.0.0...v2.1.0) (2025-11-24)
+
+
+### Features
+
+* add release workflow for cross-platform binaries ([ec301be](https://github.com/ivannovak/glide-plugin-php/commit/ec301be13dbbff70d367335c0df1a7b31ef4f9ba))
+
 ## [2.0.0](https://github.com/ivannovak/glide-plugin-php/compare/v1.0.0...v2.0.0) (2025-11-24)
 
 
