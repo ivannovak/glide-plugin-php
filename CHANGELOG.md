@@ -1,3 +1,10 @@
+## [2.2.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.1.0...v2.2.0) (2025-11-24)
+
+
+### Features
+
+* migrate to Glide v2 module path ([b17605c](https://github.com/ivannovak/glide-plugin-php/commit/b17605ce356e7655a1e989ada7278c4a292e1789))
+
 ## [2.1.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.0.0...v2.1.0) (2025-11-24)
 
 
