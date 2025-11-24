@@ -1,106 +1,153 @@
-# Glide PHP Plugin
+# glide-plugin-php
 
-External PHP plugin for Glide - provides PHP and Composer integration.
+[![CI](https://github.com/ivannovak/glide-plugin-php/actions/workflows/ci.yml/badge.svg)](https://github.com/ivannovak/glide-plugin-php/actions/workflows/ci.yml)
+[![Semantic Release](https://github.com/ivannovak/glide-plugin-php/actions/workflows/semantic-release.yml/badge.svg)](https://github.com/ivannovak/glide-plugin-php/actions/workflows/semantic-release.yml)
+
+PHP and Composer integration plugin for [Glide CLI](https://github.com/ivannovak/glide).
 
 ## Overview
 
-This plugin provides PHP functionality for Glide, including:
-
-- Composer dependency management
-- Framework detection (Laravel, Symfony, WordPress, Drupal, etc.)
-- Testing tool detection and execution (PHPUnit, Pest, etc.)
-- Static analysis tool integration (PHPStan, Psalm, Larastan, etc.)
-- Project metadata extraction from composer.json
+This plugin provides PHP project detection and Composer integration for Glide. When installed, Glide will automatically detect PHP projects and provide intelligent commands for testing, static analysis, and dependency management.
 
 ## Installation
 
-### Method 1: Build from Source
+### From GitHub Releases (Recommended)
+
+```bash
+glide plugins install github.com/ivannovak/glide-plugin-php
+```
+
+### From Source
 
 ```bash
 # Clone the repository
-git clone https://github.com/ivannovak/glide-plugin-php
+git clone https://github.com/ivannovak/glide-plugin-php.git
 cd glide-plugin-php
 
-# Build the plugin
-make build
-
-# Install to PATH
-sudo cp glide-plugin-php /usr/local/bin/
+# Build and install (requires Go 1.24+)
+make install
 ```
 
-### Method 2: Go Install (when published)
+## What It Detects
 
-```bash
-go install github.com/ivannovak/glide-plugin-php/cmd/glide-plugin-php@latest
+The plugin automatically detects PHP projects by looking for:
+
+- **Required files**: `composer.json`
+- **Lock files**: `composer.lock`
+- **Directories**: `vendor/`
+- **Config files**: `phpunit.xml`, `phpstan.neon`, `psalm.xml`
+
+### Framework Detection
+
+The plugin recognizes popular PHP frameworks:
+
+- **Laravel** - Full-stack framework
+- **Symfony** - Enterprise framework
+- **WordPress** - CMS platform
+- **Drupal** - CMS platform
+- **Magento** - E-commerce platform
+- **CodeIgniter** - Lightweight framework
+- **Slim** - Micro framework
+- **Lumen** - Laravel micro-framework
+- **Laminas** (formerly Zend)
+- **Yii** - High-performance framework
+- **CakePHP** - Rapid development framework
+
+### Tool Detection
+
+The plugin automatically detects and integrates with:
+
+**Testing Tools:**
+- PHPUnit
+- Pest
+- Codeception
+- Behat
+- PHPSpec
+
+**Quality Tools:**
+- PHPStan
+- Psalm
+- Larastan (Laravel-specific PHPStan)
+- PHP-CS-Fixer
+- PHPCS (PHP CodeSniffer)
+- PHPMD (PHP Mess Detector)
+- Rector
+
+## Available Commands
+
+Once a PHP project is detected, the following commands become available:
+
+### Dependency Management
+- `install` (alias: `i`) - Install Composer dependencies
+  - With args: Requires specified packages (`composer require`)
+  - Without args: Installs all dependencies (`composer install`)
+
+### Script Execution
+- `run <script>` - Run a composer.json script
+  - Executes scripts defined in composer.json
+
+### Testing
+- `test` (alias: `t`) - Run tests with auto-detected framework
+  - Automatically uses PHPUnit or Pest
+  - Forwards all arguments to the testing tool
+
+### Static Analysis
+- `analyze` (alias: `a`) - Run static analysis
+  - Auto-detects PHPStan, Psalm, or Larastan
+  - Forwards all arguments to the analysis tool
+
+## Configuration
+
+The plugin works out-of-the-box without configuration. However, you can customize behavior in your `.glide.yml`:
+
+```yaml
+plugins:
+  php:
+    enabled: true
+    # Additional configuration options can be added here in the future
 ```
 
-## Usage
+## Examples
 
-Once installed, the plugin provides PHP commands to Glide:
+### Basic PHP Project
 
 ```bash
+# Navigate to your PHP project
+cd my-laravel-app
+
+# Glide automatically detects PHP and Laravel
+glide help
+
 # Install dependencies
 glide install
 
-# Install specific packages
+# Install a specific package
 glide install symfony/console
 
-# Run Composer scripts
-glide run test
-glide run dev
-
-# Run tests (auto-detects PHPUnit or Pest)
+# Run tests
 glide test
-glide test --filter UserTest
 
-# Run static analysis (auto-detects PHPStan, Psalm, or Larastan)
+# Run static analysis
 glide analyze
-glide analyze src/
 ```
 
-## Commands
-
-### `install` (alias: `i`)
-
-Install Composer dependencies or require new packages.
-
-```bash
-# Install all dependencies
-glide install
-
-# Require new packages
-glide install symfony/console
-glide install --dev phpunit/phpunit
-```
-
-### `run <script> [args...]`
-
-Run any script defined in your `composer.json`:
-
-```bash
-glide run test
-glide run dev
-glide run post-install-cmd
-```
-
-### `test` (alias: `t`)
-
-Run tests using the detected testing framework (PHPUnit or Pest).
+### Testing Workflows
 
 ```bash
 # Run all tests
 glide test
 
-# Run specific tests
-glide test --filter UserTest
+# Run specific test file
+glide test tests/Unit/UserTest.php
+
+# Run with filter
+glide test --filter=UserTest
 
 # Run with coverage
 glide test --coverage
 ```
 
-### `analyze` (alias: `a`)
-
-Run static analysis using detected tools (PHPStan, Psalm, or Larastan).
+### Static Analysis
 
 ```bash
 # Analyze entire project
@@ -109,67 +156,91 @@ glide analyze
 # Analyze specific directory
 glide analyze src/
 
-# Run with specific level
-glide analyze --level max
+# Run with specific level (PHPStan)
+glide analyze --level=max
+
+# Run with configuration
+glide analyze --configuration=phpstan.neon
 ```
 
-## Detection
+### Composer Scripts
 
-The plugin automatically detects:
-
-- **Frameworks**: Laravel, Symfony, WordPress, Drupal, Magento, CodeIgniter, Slim, Lumen, Laminas, Yii, CakePHP
-- **Testing Tools**: PHPUnit, Pest, Codeception, Behat, PHPSpec
-- **Quality Tools**: PHPStan, Psalm, PHP-CS-Fixer, PHPCS, PHPMD, Rector, Larastan
-- **PHP Version**: From `require.php` in composer.json
-- **Dependencies**: Installed status (vendor directory check)
+```bash
+# Run any composer script
+glide run test
+glide run dev
+glide run post-install-cmd
+glide run lint
+```
 
 ## Development
+
+### Prerequisites
+
+- Go 1.24 or higher
+- Make (optional, for convenience targets)
 
 ### Building
 
 ```bash
-# Build for current platform
-make build
-
-# Build for all platforms
-make build-all
-
 # Run tests
 make test
 
-# Tidy dependencies
-make tidy
+# Run tests with coverage
+make test-coverage
+
+# Run linters
+make lint
+
+# Format code
+make fmt
 ```
 
-### Current Status
+### Testing
 
-**Phase 3: PHP Plugin Creation** (In Progress)
+The plugin includes comprehensive tests for:
 
-The plugin structure is complete, but currently relies on Glide's internal packages via a local replace directive. To make this fully standalone:
+- PHP version detection
+- Framework detection
+- Tool detection (testing & quality)
+- Composer metadata extraction
+- Command execution
 
-1. Glide core needs to implement `sdk.RunPlugin()` function
-2. SDK needs to expose extension data access in commands
-3. Remove the local replace directive
+```bash
+# Run all tests
+go test ./...
 
-This will be completed in a future phase when the public SDK API is finalized.
+# Run tests with verbose output
+go test -v ./...
 
-### Project Structure
-
+# Run tests with coverage
+go test -cover ./...
 ```
-glide-plugin-php/
-├── cmd/
-│   └── glide-plugin-php/
-│       └── main.go              # Plugin entry point
-├── internal/
-│   ├── commands/
-│   │   └── php.go               # PHP commands
-│   └── plugin/
-│       ├── detector.go          # PHP project detection
-│       └── plugin.go            # Plugin implementation
-├── Makefile                     # Build automation
-└── README.md                    # This file
-```
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`make test`)
+6. Submit a pull request
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Related Projects
+
+- [Glide](https://github.com/ivannovak/glide) - The main Glide CLI
+- [glide-plugin-go](https://github.com/ivannovak/glide-plugin-go) - Go plugin for Glide
+- [glide-plugin-node](https://github.com/ivannovak/glide-plugin-node) - Node.js plugin for Glide
+- [glide-plugin-docker](https://github.com/ivannovak/glide-plugin-docker) - Docker plugin for Glide
+
+## Support
+
+- [GitHub Issues](https://github.com/ivannovak/glide-plugin-php/issues)
+- [Glide Documentation](https://github.com/ivannovak/glide#readme)
+- [Plugin Development Guide](https://github.com/ivannovak/glide/blob/main/docs/PLUGIN_DEVELOPMENT.md)
