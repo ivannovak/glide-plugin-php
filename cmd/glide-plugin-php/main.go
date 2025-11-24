@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/ivannovak/glide-plugin-php/internal/plugin"
-	sdk "github.com/ivannovak/glide/pkg/plugin/sdk/v1"
+	sdk "github.com/ivannovak/glide/v2/pkg/plugin/sdk/v1"
 )
 
 func main() {
