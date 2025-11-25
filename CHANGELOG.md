@@ -1,3 +1,10 @@
+## [2.3.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.2.0...v2.3.0) (2025-11-25)
+
+
+### Features
+
+* use published Glide v2.2.0 ([7afeaec](https://github.com/ivannovak/glide-plugin-php/commit/7afeaeccc00fbd439d0ec604a508e11f5a9d45c5))
+
 ## [2.2.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.1.0...v2.2.0) (2025-11-24)
 
 
