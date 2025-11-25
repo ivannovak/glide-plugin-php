@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/ivannovak/glide-plugin-php/compare/v2.3.2...v2.3.3) (2025-11-25)
+
+
+### Bug Fixes
+
+* remove command registration from detector-only plugin ([6d1cbd5](https://github.com/ivannovak/glide-plugin-php/commit/6d1cbd5b067c5d0e0ec104a7414997998479d468))
+
 ## [2.3.2](https://github.com/ivannovak/glide-plugin-php/compare/v2.3.1...v2.3.2) (2025-11-25)
 
 
