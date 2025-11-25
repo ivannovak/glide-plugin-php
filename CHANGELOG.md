@@ -1,3 +1,10 @@
+## [2.3.2](https://github.com/ivannovak/glide-plugin-php/compare/v2.3.1...v2.3.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* correct build path in release workflow ([6393da7](https://github.com/ivannovak/glide-plugin-php/commit/6393da73a909d02587e44a0f2424970b56eb4549))
+
 ## [2.3.1](https://github.com/ivannovak/glide-plugin-php/compare/v2.3.0...v2.3.1) (2025-11-25)
 
 
