@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/ivannovak/glide-plugin-php/compare/v2.3.0...v2.3.1) (2025-11-25)
+
+
+### Bug Fixes
+
+* remove CI dependency from release workflow ([8b4248b](https://github.com/ivannovak/glide-plugin-php/commit/8b4248b92ae99a715602d0d8b356e43283fe8fca))
+
 ## [2.3.0](https://github.com/ivannovak/glide-plugin-php/compare/v2.2.0...v2.3.0) (2025-11-25)
 
 
