@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/ivannovak/glide-plugin-php/pkg/version"
-	"github.com/ivannovak/glide/v2/pkg/plugin/sdk/v2"
+	"github.com/ivannovak/glide/v3/pkg/plugin/sdk/v2"
 )
 
 // Config defines the plugin's type-safe configuration.
