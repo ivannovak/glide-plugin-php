@@ -1,18 +1,20 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/ivannovak/glide-plugin-php/internal/plugin"
-	sdk "github.com/ivannovak/glide/v2/pkg/plugin/sdk/v1"
+	"github.com/ivannovak/glide/v3/pkg/plugin/sdk/v2"
 )
 
 func main() {
-	// Initialize the PHP gRPC plugin
-	phpPlugin := plugin.NewGRPCPlugin()
+	// Initialize the PHP plugin
+	phpPlugin := plugin.New()
 
-	// Run the plugin using the SDK
-	if err := sdk.RunPlugin(phpPlugin); err != nil {
+	// Run the plugin using SDK v2
+	if err := v2.Serve(phpPlugin); err != nil {
+		fmt.Fprintf(os.Stderr, "Plugin error: %v\n", err)
 		os.Exit(1)
 	}
 }
